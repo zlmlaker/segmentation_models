@@ -32,6 +32,6 @@ def segmentate(images):
     if end_idx != N:
         mask = model.predict(images[end_idx: N].reshape([N-end_idx, 64, 64, 3]))
         mask = mask[:, :, :, :-1]
-        mask = np.argmax(mask, 3).reshape([batch_size, 64 * 64])
+        mask = np.argmax(mask, 3).reshape([N-end_idx, 64 * 64])
         pred_seg[end_idx:] = mask
     return pred_seg
